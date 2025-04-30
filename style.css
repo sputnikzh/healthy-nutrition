@@ -1,0 +1,12 @@
+.login{
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    width: 70vw;
+    height: 70vh;
+    
+}
+body{
+    display: flex;
+    justify-content: center;
+}
