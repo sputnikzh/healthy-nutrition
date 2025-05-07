@@ -1,6 +1,7 @@
 import image from './login.png';
 
 
+
 const renderLogin = () => {
   const div = document.createElement('div');
   const form = document.createElement('form');
@@ -8,9 +9,12 @@ const renderLogin = () => {
   const img = document.createElement('img');
   const btn = document.createElement('button');
   const title = document.createElement('h3');
+  
+
+  
 
   div.classList.add('login');
-  form.setAttribute('type', 'submit');
+  btn.setAttribute('type', 'submit');
   img.setAttribute('src', image);
   input.setAttribute('placeholder', 'Enter login');
   btn.textContent = 'Login';
@@ -21,6 +25,17 @@ const renderLogin = () => {
   form.appendChild(btn);
   div.appendChild(img);
   div.appendChild(form);
+  
+
+  form.addEventListener('submit', (e)=>{
+    localStorage.setItem('login', input.value)
+  })
+  
+  
+
+  
+    
+  
   return div;
 };
 
