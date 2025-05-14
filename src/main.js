@@ -1,4 +1,5 @@
 import closeImage from "./closeIcon.png";
+import getDataUser from "./info.js";
 const renderMain = (loginString) => {
   const div = document.createElement("div");
   const helloUser = document.createElement("h3");
@@ -10,6 +11,7 @@ const renderMain = (loginString) => {
   closeImg.setAttribute("src", closeImage);
   div.appendChild(closeBtn);
   div.appendChild(helloUser);
+  div.appendChild(getDataUser())
   closeBtn.appendChild(closeImg);
 
   closeBtn.addEventListener("click", () => {
