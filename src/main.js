@@ -30,17 +30,17 @@ const STATE = {
 const renderHeader = () => {
   const div = document.createElement("div");
   const helloUser = document.createElement("h3");
-  const closeImg = document.createElement("img");
   const closeBtn = document.createElement("button");
+const closeModal = document.createElement("div")
+
+  closeModal.classList.add("closeModal")
 
   helloUser.textContent = STATE.currentUser.login;
 
-  closeImg.setAttribute("src", closeImage);
-  div.appendChild(closeBtn);
+  div.appendChild(closeModal);
   div.appendChild(helloUser);
-  closeBtn.appendChild(closeImg);
 
-  closeBtn.addEventListener("click", () => {
+  closeModal.addEventListener("click", () => {
     localStorage.removeItem("login");
     window.location.reload();
   });
