@@ -3,16 +3,24 @@ import vegetables from "./vegetables.png"
 const getDataUser = (login) => {
   const div = document.createElement("div");
   div.classList.add("infoDiv")
-  const inputDiv = document.createElement("div")
-  inputDiv.classList.add("inputDiv")
-
+  
   const height = document.createElement("input");
   const weight = document.createElement("input");
   const age = document.createElement("input");
   const row1 = document.createElement("div");
   const row2 = document.createElement("div");
   const vegetablesImg = document.createElement("img")
+  const form = document.createElement("form")
+  form.classList.add("infoForm")
   vegetablesImg.classList.add("vegetablesImg")
+  height.setAttribute("name", "height")
+  weight.setAttribute("name", "weight")
+  age.setAttribute("name", "age")
+  
+  height.setAttribute("type", "text")
+  weight.setAttribute("type", "text")
+  age.setAttribute("type", "text")
+
 
   vegetablesImg.setAttribute("src", vegetables)
 
@@ -33,40 +41,48 @@ const getDataUser = (login) => {
   femaleLabel.textContent = "Жен";
 
   row1.appendChild(maleLabel);
+  row1.classList.add("genderDiv")
   row1.appendChild(maleInput);
+  row2.classList.add("genderDiv")
 
   row2.appendChild(femaleLabel);
   row2.appendChild(femaleInput);
   div.appendChild(vegetablesImg)
-  div.appendChild(inputDiv)
+  div.appendChild(form)
 
   const heightText = document.createElement("label");
   heightText.textContent = "Введите ваш рост:";
-  inputDiv.appendChild(heightText);
-  inputDiv.appendChild(height);
+  form.appendChild(heightText);
+  form.appendChild(height);
   const weightText = document.createElement("label");
   weightText.textContent = "Введите ваш вес:";
-  inputDiv.appendChild(weightText);
-  inputDiv.appendChild(weight);
+  form.appendChild(weightText);
+  form.appendChild(weight);
   const ageText = document.createElement("label");
   ageText.textContent = "Введите ваш возраст:";
-  inputDiv.appendChild(ageText);
-  inputDiv.appendChild(age);
-  inputDiv.appendChild(enterBTN);
-  inputDiv.appendChild(row1);
-  inputDiv.appendChild(row2);
+  form.appendChild(ageText);
+  form.appendChild(age);
+  form.appendChild(row1);
+  form.appendChild(row2);
+  form.appendChild(enterBTN);
 
   enterBTN.textContent = "Ввод";
 
-  enterBTN.addEventListener("click", () => {
-    const information = {};
-    information["height"] = height.value;
-    information["wight"] = weight.value;
-    information["age"] = age.value;
-    const db = getDatabase();
-    set(ref(db, 'users/' + login), information);
-    window.location.reload();
-  });
+  // enterBTN.addEventListener("click", () => {
+  //   const information = {};
+  //   information["height"] = height.value;
+  //   information["wight"] = weight.value;
+  //   information["age"] = age.value;
+  //   const db = getDatabase();
+  //   set(ref(db, 'users/' + login), information);
+  //   window.location.reload();
+  // });
+  form.addEventListener("submit", (e)=>{
+    e.preventDefault()
+    const data = new FormData(form)
+    console.log(data)
+
+  })
 
   return div;
 };

@@ -5,6 +5,7 @@ import image from './login.png';
 const renderLogin = () => {
   const div = document.createElement('div');
   const form = document.createElement('form');
+  form.classList.add("loginForm")
   const input = document.createElement('input');
   const img = document.createElement('img');
   const btn = document.createElement('button');

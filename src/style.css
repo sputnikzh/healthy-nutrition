@@ -34,7 +34,7 @@ body{
     
 }
 
-form {
+.loginForm {
     display: flex;
     width: 30%;
     flex-direction: column;
@@ -113,7 +113,7 @@ form input {
 }
 .infoDiv{
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     background-color: white;
     height: 80vh;
     width: 80vw;
@@ -128,10 +128,22 @@ form input {
     width: 50%;
     object-fit: contain;
 }
-.inputDiv{
+.infoForm{
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
 
+}
+.genderDiv{
+    display: flex;
+    align-items: center;
+
+}
+.genderDiv input{
+    height: 3vh;
+    width: 3vw;
+}
+.genderDiv label{
+    width: 20%;
 }
