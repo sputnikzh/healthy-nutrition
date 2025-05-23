@@ -95,6 +95,7 @@ const renderMain = (loginString) => {
     usersRef,
     (snapshot) => {
       const data = snapshot.val();
+      console.log(data)
       // если пользователь не создан, то его создаем
       if (!data) {
         set(ref(db, `users/${loginString}`), {

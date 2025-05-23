@@ -33,7 +33,9 @@ const getDataUser = (login) => {
   const enterBTN = document.createElement("button");
 
   maleInput.setAttribute("name", "gender");
+  maleInput.setAttribute("value","мужской")
   maleInput.setAttribute("type", "radio");
+  femaleInput.setAttribute("value","женский")
 
   femaleInput.setAttribute("name", "gender");
   femaleInput.setAttribute("type", "radio");
@@ -71,15 +73,7 @@ const getDataUser = (login) => {
 
   enterBTN.textContent = "Ввод";
 
-  // enterBTN.addEventListener("click", () => {
-  //   const information = {};
-  //   information["height"] = height.value;
-  //   information["wight"] = weight.value;
-  //   information["age"] = age.value;
-  //   const db = getDatabase();
-  //   set(ref(db, 'users/' + login), information);
-  //   window.location.reload();
-  // });
+  
 
   maleInput.addEventListener("click", () => {
     gender = "male";
@@ -90,12 +84,12 @@ const getDataUser = (login) => {
   });
 
   form.addEventListener("submit", (e) => {
-    const information = {};
-    information["height"] = height.value;
-    information["wight"] = weight.value;
-    information["age"] = age.value;
-    information["gender"] = gender;
-    console.log(information);
+    const data = new FormData(form);
+    const formData = Object.fromEntries(data);
+    console.log(formData)
+    const db = getDatabase()
+   set(ref(db, 'users/' + login), information)
+   window.location.reload()
     e.preventDefault();
   });
 
