@@ -1,8 +1,6 @@
 import image from './login.png';
 
-
-
-const renderLogin = () => {
+const getLogin = () => {
   const div = document.createElement('div');
   const form = document.createElement('form');
   form.classList.add("loginForm")
@@ -11,9 +9,6 @@ const renderLogin = () => {
   const btn = document.createElement('button');
   const title = document.createElement('h3');
   
-
-  
-
   div.classList.add('login');
   btn.setAttribute('type', 'submit');
   img.setAttribute('src', image);
@@ -28,16 +23,10 @@ const renderLogin = () => {
   div.appendChild(form);
   
 
-  form.addEventListener('submit', (e)=>{
+  form.addEventListener('submit', (e) => {
     localStorage.setItem('login', input.value)
   })
-  
-  
-
-  
-    
-  
   return div;
 };
 
-export default renderLogin;
+export default getLogin;

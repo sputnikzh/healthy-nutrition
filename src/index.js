@@ -1,7 +1,6 @@
-import renderLogin from "./login.js";
+import getLogin from "./login.js";
 import renderMain from "./main.js";
 import "./style.css";
-import './firebase.js';
 
 const appElement = document.querySelector("#app");
 
@@ -11,7 +10,7 @@ const app = () => {
     const main = renderMain(loginString);
     appElement.appendChild(main);
   } else {
-    const login = renderLogin();
+    const login = getLogin();
     appElement.appendChild(login);
   }
   console.log(loginString);

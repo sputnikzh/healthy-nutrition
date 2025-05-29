@@ -62,7 +62,7 @@ form input {
 }
 
 @media (max-width: 1175px) {
-    .login {
+    .login, .infoDiv {
         flex-direction: column;
     }
 
@@ -78,72 +78,90 @@ form input {
         height: 25%;
     }
 }
+.header {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(255, 255, 255);
+    border: 3px solid black;
+    padding: 1em;
+    border-radius: 5px;
+    box-shadow: 0 0 5px black;
+
+}
+
 .closeModal {
-	position: absolute;
-	top: 30px;
-	right: 20px;
-	width: 24px;
-	height: 24px;
-	opacity: 0.2;
-	cursor: pointer;
-  transition: opacity ease 0.5s;
-
-	&:hover {
-		opacity: 1;
-	}
+    cursor: pointer;
+    font-weight: 700;
+    transition: 300ms;
+    color: rgb(134, 134, 134);
 }
 
-.closeModal::before,
-.closeModal::after {
-	content: '';
-	position: absolute;
-	top: 10px;
-	display: block;
-	width: 24px;
-	height: 3px;
-	background: #000;
+.closeModal:hover {
+    transform: scale(1.2);
+    color: black;
 }
 
-.closeModal::before {
-	transform: rotate(45deg);
-}
-
-.closeModal::after {
-	transform: rotate(-45deg);
-}
 .infoDiv{
     display: flex;
     /* flex-direction: column; */
     background-color: white;
-    height: 80vh;
+    height: 60vh;
     width: 80vw;
+    max-width: 900px;
     border: 3px solid black;
     border-radius: 5px;
     box-shadow: 0 0 5px black;
     padding: 1em;
+    gap: 3em;
+    justify-content: center;
     align-items: center;
 }
+
+.infoUser{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    height: 60vh;
+    width: 80vw;
+}
+
+.info-header {
+    font-size: 25px;
+    border: 3px solid black;
+    padding: 1em;
+    border-radius: 5px;
+
+
+}
+
 .vegetablesImg{
-    height: 45%;
+    max-height: 40%;
     width: 50%;
     object-fit: contain;
 }
+
 .infoForm{
-    height: 100%;
+    height: 40%;
     display: flex;
+    gap: 0.3em;
     flex-direction: column;
     justify-content: center;
+}
+
+.infoForm input {
+    height: auto;
 
 }
 .genderDiv{
     display: flex;
     align-items: center;
+}
 
-}
 .genderDiv input{
-    height: 3vh;
-    width: 3vw;
+    height: 70%;
+    width: 20%;
 }
+
 .genderDiv label{
     width: 20%;
 }

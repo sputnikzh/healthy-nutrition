@@ -1,8 +1,8 @@
 import { getDatabase, ref, onValue, set } from "firebase/database";
 import vegetables from "./vegetables.png";
+import { db } from "./firebase.js";
 
-const getDataUser = (login) => {
-  let gender = "male";
+const getFirstVisit = (login) => {
   const div = document.createElement("div");
   div.classList.add("infoDiv");
 
@@ -19,9 +19,13 @@ const getDataUser = (login) => {
   weight.setAttribute("name", "weight");
   age.setAttribute("name", "age");
 
-  height.setAttribute("type", "text");
-  weight.setAttribute("type", "text");
-  age.setAttribute("type", "text");
+  height.setAttribute("type", "number");
+  weight.setAttribute("type", "number");
+  age.setAttribute("type", "number");
+
+  height.setAttribute("autocomplete", "off");
+  weight.setAttribute("autocomplete", "off");
+  age.setAttribute("autocomplete", "off");
 
   vegetablesImg.setAttribute("src", vegetables);
 
@@ -33,9 +37,9 @@ const getDataUser = (login) => {
   const enterBTN = document.createElement("button");
 
   maleInput.setAttribute("name", "gender");
-  maleInput.setAttribute("value","мужской")
+  maleInput.setAttribute("value", "мужской");
   maleInput.setAttribute("type", "radio");
-  femaleInput.setAttribute("value","женский")
+  femaleInput.setAttribute("value", "женский");
 
   femaleInput.setAttribute("name", "gender");
   femaleInput.setAttribute("type", "radio");
@@ -73,27 +77,14 @@ const getDataUser = (login) => {
 
   enterBTN.textContent = "Ввод";
 
-  
-
-  maleInput.addEventListener("click", () => {
-    gender = "male";
-  });
-
-  femaleInput.addEventListener("click", () => {
-    gender = "female";
-  });
-
   form.addEventListener("submit", (e) => {
     const data = new FormData(form);
     const formData = Object.fromEntries(data);
-    console.log(formData)
-    const db = getDatabase()
-   set(ref(db, 'users/' + login), information)
-   window.location.reload()
-    e.preventDefault();
+    console.log(formData);
+    set(ref(db, "users/" + login), formData);
   });
 
   return div;
 };
 
-export default getDataUser;
+export default getFirstVisit;

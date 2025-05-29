@@ -1,44 +1,27 @@
-import { getDatabase, ref, onValue, set } from "firebase/database";
-import closeImage from "./closeIcon.png";
-import getDataUser from "./info.js";
+import { ref, onValue, set } from "firebase/database";
+import getFirstVisit from "./firstVisit.js";
+import { db } from "./firebase.js";
+import getInfoUser from "./userInfo.js";
 
 const STATE = {
   rootMainElement: document.createElement("div"),
   currentUser: null,
 };
 
-// const handlePending = () => {
-// const div = document.createElement("div");
-// const helloUser = document.createElement("h3");
-// const closeImg = document.createElement("img");
-// const closeBtn = document.createElement("button");
-
-// helloUser.textContent = "Привет " + loginString;
-
-// closeImg.setAttribute("src", closeImage);
-// div.appendChild(closeBtn);
-// div.appendChild(helloUser);
-// closeBtn.appendChild(closeImg);
-
-// closeBtn.addEventListener("click", () => {
-//   localStorage.removeItem("login");
-//   window.location.reload();
-// });
-// return div;
-// };
-
 const renderHeader = () => {
   const div = document.createElement("div");
+  div.classList.add('header');
   const helloUser = document.createElement("h3");
-  const closeBtn = document.createElement("button");
-const closeModal = document.createElement("div")
+  const closeModal = document.createElement("div");
 
-  closeModal.classList.add("closeModal")
+  closeModal.classList.add("closeModal");
+  closeModal.textContent = 'X'
 
   helloUser.textContent = STATE.currentUser.login;
 
-  div.appendChild(closeModal);
   div.appendChild(helloUser);
+  div.appendChild(closeModal);
+  
 
   closeModal.addEventListener("click", () => {
     localStorage.removeItem("login");
@@ -48,27 +31,13 @@ const closeModal = document.createElement("div")
 };
 
 const renderFirstVisit = () => {
-  const form = getDataUser(STATE.currentUser.login);
+  const form = getFirstVisit(STATE.currentUser.login);
   STATE.rootMainElement.appendChild(form);
 };
 
 const renderUser = () => {
-  const { login, wight, height } = STATE.currentUser;
-  const div = document.createElement("div");
-
-  const heightText = document.createElement("p");
-  const wightText = document.createElement("p");
-  const loginText = document.createElement("p");
-
-  loginText.textContent = `Привет, ${login}`;
-
-  heightText.textContent = `Твой рост: ${height}`;
-  wightText.textContent = `Твой вес: ${wight}`;
-
-  div.appendChild(loginText);
-  div.appendChild(heightText);
-  div.appendChild(wightText);
-
+  const { login, weight, height, age, gender } = STATE.currentUser;
+  const div = getInfoUser(login, weight, height, age)
   STATE.rootMainElement.appendChild(div);
 };
 
@@ -88,39 +57,44 @@ const handleEvents = (status) => {
 };
 
 const renderMain = (loginString) => {
-  const db = getDatabase();
   const usersRef = ref(db, "users/" + loginString);
 
   onValue(
     usersRef,
     (snapshot) => {
       const data = snapshot.val();
-      console.log(data)
+      console.log(data);
       // если пользователь не создан, то его создаем
       if (!data) {
+        console.log(loginString)
         set(ref(db, `users/${loginString}`), {
-          age: null,
-          height: null,
-          wight: null,
+          age: '',
+          height: '',
+          weight: '',
+          gender: ''
+        })
+        .catch((error) => {
+          console.error("Ошибка при создании пользователя:", error);
         });
         STATE.currentUser = {
           login: loginString,
-          age: null,
-          height: null,
-          wight: null,
+          age: '',
+          height: '',
+          weight: '',
         };
         handleEvents("first visit");
         return;
       }
       // тут проверяем у созданого пользователя данные
-      const { height, wight, age } = data;
+      const { height, weight, age, gender } = data;
       STATE.currentUser = {
         login: loginString,
         age: age,
         height: height,
-        wight: wight,
+        weight: weight,
+        gender: gender
       };
-      if (!height && !wight) {
+      if (!height.length && !weight.length) {
         handleEvents("first visit");
         return;
       }
@@ -128,7 +102,8 @@ const renderMain = (loginString) => {
         login: loginString,
         age: age,
         height: height,
-        wight: wight,
+        weight: weight,
+        gender: gender
       };
       handleEvents("render user");
     },
