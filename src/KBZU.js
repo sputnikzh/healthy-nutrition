@@ -52,4 +52,15 @@ function calculateKBZU({ sex, weight, height, age, activityLevel, goal }) {
     carbs_g: Math.round(carbs),
   };
 }
+// const result = calculateKBZU({
+//   sex: 'female',
+//   weight: 60,      // кг
+//   height: 165,     // см
+//   age: 28,
+//   activityLevel: 'moderate', // 'low', 'light', 'moderate', 'high', 'very_high'
+//   goal: 'lose'               // 'lose', 'maintain', 'gain'
+// });
+
+// console.log(result);
+// // { calories: 1700, protein_g: 120, fat_g: 60, carbs_g: 138 }
 export default calculateKBZU
