@@ -1,6 +1,6 @@
 import getBju from "./bju.js";
 
-const getInfoUser = (login, weight, height, age) => {
+const getInfoUser = (login, weight, height, age, gender) => {
   const div = document.createElement("div");
   div.classList.add('infoDiv');
 
@@ -34,7 +34,7 @@ const getInfoUser = (login, weight, height, age) => {
 
   div.appendChild(header);
 
-  const bju = getBju();
+  const bju = getBju(height, weight, age, gender);
   div.appendChild(bju);
   return div;
 };

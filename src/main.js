@@ -37,7 +37,7 @@ const renderFirstVisit = () => {
 
 const renderUser = () => {
   const { login, weight, height, age, gender } = STATE.currentUser;
-  const div = getInfoUser(login, weight, height, age)
+  const div = getInfoUser(login, weight, height, age, gender)
   STATE.rootMainElement.appendChild(div);
 };
 

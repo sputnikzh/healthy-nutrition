@@ -1,4 +1,5 @@
-const getBju = () => {
+import calculateKBZU  from "./KBZU.js";
+const getBju = (height, weight, age, gender) => {
   const div = document.createElement("div");
   div.classList.add('bju-info');
   const currentDate = new Date();
@@ -7,5 +8,6 @@ const getBju = () => {
   div.appendChild(dateSpan);
   return div;
 }
+
 
 export default getBju;
