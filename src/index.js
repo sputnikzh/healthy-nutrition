@@ -1,6 +1,7 @@
 import getLogin from "./login.js";
 import renderMain from "./main.js";
 import "./style.css";
+import "./bju.css";
 
 const appElement = document.querySelector("#app");
 

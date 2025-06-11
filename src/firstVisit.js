@@ -19,7 +19,8 @@ const getFirstVisit = (login) => {
   height.setAttribute("name", "height");
   weight.setAttribute("name", "weight");
   age.setAttribute("name", "age");
-  activity.setAttribute("name", "activity")
+
+  activity.setAttribute("name", "activity");
 
   const activities = ['low', 'light', 'moderate', 'high', 'very_high']
   for(let i of activities){
@@ -47,9 +48,9 @@ const getFirstVisit = (login) => {
   const enterBTN = document.createElement("button");
 
   maleInput.setAttribute("name", "gender");
-  maleInput.setAttribute("value", "мужской");
+  maleInput.setAttribute("value", "male");
   maleInput.setAttribute("type", "radio");
-  femaleInput.setAttribute("value", "женский");
+  femaleInput.setAttribute("value", "female");
 
   femaleInput.setAttribute("name", "gender");
   femaleInput.setAttribute("type", "radio");

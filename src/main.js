@@ -36,8 +36,9 @@ const renderFirstVisit = () => {
 };
 
 const renderUser = () => {
-  const { login, weight, height, age, gender } = STATE.currentUser;
-  const div = getInfoUser(login, weight, height, age, gender)
+  const { login, weight, height, age, gender, activity } = STATE.currentUser;
+  console.log(activity)
+  const div = getInfoUser(login, weight, height, age, gender, activity, login)
   STATE.rootMainElement.appendChild(div);
 };
 
@@ -81,18 +82,20 @@ const renderMain = (loginString) => {
           age: '',
           height: '',
           weight: '',
+          activity: ''
         };
         handleEvents("first visit");
         return;
       }
       // тут проверяем у созданого пользователя данные
-      const { height, weight, age, gender } = data;
+      const { height, weight, age, gender, activity } = data;
       STATE.currentUser = {
         login: loginString,
         age: age,
         height: height,
         weight: weight,
-        gender: gender
+        gender: gender,
+        activity: activity
       };
       if (!height.length && !weight.length) {
         handleEvents("first visit");
@@ -103,7 +106,8 @@ const renderMain = (loginString) => {
         age: age,
         height: height,
         weight: weight,
-        gender: gender
+        gender: gender,
+        activity: activity
       };
       handleEvents("render user");
     },
