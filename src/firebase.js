@@ -18,5 +18,5 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-console.log(databaseURL)
+console.log(process.env.DATABASE_URL)
 export const db = getDatabase(app);
