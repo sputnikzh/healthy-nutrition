@@ -4,7 +4,7 @@ import { db } from "./firebase.js";
 import getInfoUser from "./userInfo.js";
 
 const STATE = {
-  rootMainElement: document.createElement("div"),
+  rootMainElement: document.querySelector("#app"),
   currentUser: null,
 };
 

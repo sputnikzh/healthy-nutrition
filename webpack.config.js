@@ -1,5 +1,9 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import webpack from 'webpack';
+import { config } from 'dotenv';
+if(process.env.NODE_ENV !== 'production'){
+ config()
+}
 
 export default {
   mode: process.env.NODE_ENV || 'development',

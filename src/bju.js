@@ -212,7 +212,7 @@ const getBju = (height, weight, age, gender, activity, userId) => {
   
   const currentDate = new Date();
   const dateSpan = document.createElement('span');
-  dateSpan.textContent = currentDate.toLocaleString('ru-RU');
+  dateSpan.textContent = currentDate.toLocaleString('ru-RU').slice(0,10);
 
   const data = {
     sex: gender,
